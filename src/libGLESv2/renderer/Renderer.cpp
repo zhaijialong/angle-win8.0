@@ -37,7 +37,7 @@
     #pragma message("Warning: d3dcompiler dll is not available for Windows 8.0 Store Apps. Must use precompiled shaders.")
 #endif // (_MSC_VER >= 1800)
 #else 
-#include "libGLESv2/renderer/Renderer9.h"
+//#include "libGLESv2/renderer/Renderer9.h"
 #endif // #if defined(ANGLE_PLATFORM_WINRT)
 
 namespace rx
@@ -196,7 +196,7 @@ ShaderBlob *Renderer::compileToBinary(gl::InfoLog &infoLog, const char *hlsl, co
         }
         else
         {
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
             if (result == E_OUTOFMEMORY)
 #else
             if (result == D3DERR_OUTOFVIDEOMEMORY || result == E_OUTOFMEMORY)
@@ -230,7 +230,7 @@ rx::Renderer *glCreateRenderer(egl::Display *display, AngleNativeWindowHDC hDc, 
     rx::Renderer *renderer = NULL;
     EGLint status = EGL_BAD_ALLOC;
     
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
 	renderer = new rx::Renderer11(display, hDc);
 	if (renderer)
 	{
@@ -264,7 +264,7 @@ rx::Renderer *glCreateRenderer(egl::Display *display, AngleNativeWindowHDC hDc, 
     }
 #endif
 
-#if !defined(ANGLE_PLATFORM_WINRT)
+#if !defined(ANGLE_PLATFORM_WINRT) && !defined(ANGLE_PLATFORM_XBOX)
     bool softwareDevice = (displayId == EGL_SOFTWARE_DISPLAY_ANGLE);
     renderer = new rx::Renderer9(display, hDc, softwareDevice);
 #endif //#if !defined(ANGLE_PLATFORM_WINRT)

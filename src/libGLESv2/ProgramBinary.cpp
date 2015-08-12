@@ -1639,7 +1639,7 @@ bool ProgramBinary::load(InfoLog &infoLog, const void *binary, GLsizei length)
     if (version != VERSION_DWORD)
     {
         infoLog.append("Invalid program binary version.");
-#if !defined(ANGLE_PLATFORM_WINRT)
+#if !defined(ANGLE_PLATFORM_WINRT) && !defined(ANGLE_PLATFORM_XBOX)
         return false;
  #endif
    }

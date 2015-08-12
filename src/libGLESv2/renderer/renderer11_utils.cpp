@@ -679,7 +679,8 @@ DXGI_FORMAT GetDepthShaderResourceFormat(DXGI_FORMAT format)
 HRESULT SetDebugName(ID3D11DeviceChild *resource, const char *name)
 {
 #if defined(_DEBUG)
-    return resource->SetPrivateData(WKPDID_D3DDebugObjectName, strlen(name), name);
+    //return resource->SetPrivateData(WKPDID_D3DDebugObjectName, strlen(name), name);
+    return S_OK;
 #else
     return S_OK;
 #endif

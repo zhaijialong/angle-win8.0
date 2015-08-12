@@ -11,7 +11,7 @@
 #include "libGLESv2/mathutil.h"
 
 
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
 #include "common/winrtutils.h"
 #endif // #if defined(ANGLE_PLATFORM_WINRT)
 
@@ -742,7 +742,7 @@ bool IsTriangleMode(GLenum drawMode)
 
 std::string getTempPath()
 {
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
     return winrt::getTemporaryFilePath();
 #else
     char path[MAX_PATH];

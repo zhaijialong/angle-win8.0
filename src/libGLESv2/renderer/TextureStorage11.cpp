@@ -69,7 +69,7 @@ bool TextureStorage11::IsTextureFormatRenderable(DXGI_FORMAT format)
       case DXGI_FORMAT_R8G8B8A8_UNORM:
       case DXGI_FORMAT_A8_UNORM:
       case DXGI_FORMAT_R32G32B32A32_FLOAT:
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
       case DXGI_FORMAT_R32G32B32_FLOAT:
 #endif //#if defined(ANGLE_PLATFORM_WINRT)
       case DXGI_FORMAT_R16G16B16A16_FLOAT:
@@ -82,7 +82,7 @@ bool TextureStorage11::IsTextureFormatRenderable(DXGI_FORMAT format)
       case DXGI_FORMAT_BC1_UNORM:
       case DXGI_FORMAT_BC2_UNORM: 
       case DXGI_FORMAT_BC3_UNORM:
-#if !defined(ANGLE_PLATFORM_WINRT)      
+#if !defined(ANGLE_PLATFORM_WINRT) && ! defined(ANGLE_PLATFORM_XBOX)      
       case DXGI_FORMAT_R32G32B32_FLOAT:
 #endif // #if !defined(ANGLE_PLATFORM_WINRT) 
         return false;

@@ -39,13 +39,19 @@
 #if !defined(ANGLE_PLATFORM_WP8)
 #include <D3Dcompiler.h>
 #endif // #if !defined(ANGLE_PLATFORM_WP8)
+#elif defined(ANGLE_PLATFORM_XBOX)
+#include <d3d11_x.h>
+#include <d3dcompiler_x.h>
+//#include <dxgi1_2.h>
 #else
 #include <d3d9.h>
 #include <D3D11.h>
 #include <D3Dcompiler.h>
 #endif // #if defined(WINAPI_FAMILY)
 
+#ifndef ANGLE_PLATFORM_XBOX
 #include <dxgi.h>
+#endif
 
 #ifdef _MSC_VER
 #include <hash_map>

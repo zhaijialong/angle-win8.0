@@ -22,6 +22,11 @@
 #include <wrl/client.h>
 #include <d3d11_1.h>
 #endif // #if defined(ANGLE_PLATFORM_WINRT)
+
+#if defined(ANGLE_PLATFORM_XBOX)
+#include <wrl\client.h>
+#include <d3d11_x.h>
+#endif
 namespace gl
 {
 class Renderbuffer;
@@ -182,7 +187,7 @@ class Renderer11 : public Renderer
     // D3D11-renderer specific methods
     ID3D11Device *getDevice() { return mDevice; }
     ID3D11DeviceContext *getDeviceContext() { return mDeviceContext; };
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
 
     IDXGIFactory2 *getDxgiFactory() { return mDxgiFactory; };
 #else
@@ -367,7 +372,7 @@ class Renderer11 : public Renderer
     IDXGIAdapter *mDxgiAdapter;
     DXGI_ADAPTER_DESC mAdapterDescription;
     char mDescription[128];
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
     IDXGIFactory2 *mDxgiFactory;
 #else
     IDXGIFactory *mDxgiFactory;

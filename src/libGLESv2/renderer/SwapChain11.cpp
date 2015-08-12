@@ -11,14 +11,14 @@
 
 #include "libGLESv2/renderer/renderer11_utils.h"
 #include "libGLESv2/renderer/Renderer11.h"
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
 #include "common/winrtutils.h"
 #include "common/winrtangle.h"
 #include "common/winrtangleutils.h"
 #include "libGLESv2/renderer/shaders/compiled/winrt/passthrough11vs.h"
 #include "libGLESv2/renderer/shaders/compiled/winrt/passthroughrgba11ps.h"
 #if !defined(ANGLE_PLATFORM_WP8)
-#include <windows.ui.xaml.media.dxinterop.h>
+//#include <windows.ui.xaml.media.dxinterop.h>
 #endif // #if !defined(ANGLE_PLATFORM_WP8)
 using namespace Microsoft::WRL;
 using namespace ABI::Windows::UI::Core;
@@ -279,6 +279,7 @@ EGLint SwapChain11::resetOffscreenTexture(int backbufferWidth, int backbufferHei
         // EGL_ANGLE_surface_d3d_texture_2d_share_handle requires that we store a share handle for the client
         if (useSharedResource)
         {
+#ifndef ANGLE_PLATFORM_XBOX
             IDXGIResource *offscreenTextureResource = NULL;
             result = mOffscreenTexture->QueryInterface(__uuidof(IDXGIResource), (void**)&offscreenTextureResource);
 
@@ -298,6 +299,7 @@ EGLint SwapChain11::resetOffscreenTexture(int backbufferWidth, int backbufferHei
                     ERR("Could not get offscreen texture shared handle: %08lX", result);
                 }
             }
+#endif
         }
     }
         
@@ -514,7 +516,7 @@ EGLint SwapChain11::reset(int backbufferWidth, int backbufferHeight, EGLint swap
 
     if (mWindow)
     {
-#if !defined(ANGLE_PLATFORM_WINRT)
+#if !defined(ANGLE_PLATFORM_WINRT) && !defined(ANGLE_PLATFORM_XBOX)
         // We cannot create a swap #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
         // for an HWND that is owned by a different process
         DWORD currentProcessId = GetCurrentProcessId();
@@ -529,7 +531,7 @@ EGLint SwapChain11::reset(int backbufferWidth, int backbufferHeight, EGLint swap
         }
 #endif //#if !defined(ANGLE_PLATFORM_WINRT)
 
-#if !defined(ANGLE_PLATFORM_WINRT)
+#if !defined(ANGLE_PLATFORM_WINRT) && !defined(ANGLE_PLATFORM_XBOX)
         IDXGIFactory *factory = mRenderer->getDxgiFactory();
         DXGI_SWAP_CHAIN_DESC swapChainDesc = {0};
         swapChainDesc.BufferCount = 2;
@@ -593,13 +595,16 @@ EGLint SwapChain11::reset(int backbufferWidth, int backbufferHeight, EGLint swap
                     );
             }
         }
-#elif defined(ANGLE_PLATFORM_WINRT)
+#elif defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
         ComPtr<IWinrtEglWindow> iWinRTWindow;
         result = mWindow.As(&iWinRTWindow);
         if(SUCCEEDED(result))
         {
             ComPtr<IUnknown> iWindow = iWinRTWindow->GetWindowInterface();
             bool isPanel = winrt::isSwapChainBackgroundPanel(iWindow.Get());
+#ifdef ANGLE_PLATFORM_XBOX
+            isPanel = false;
+#endif
             IDXGIFactory2 *factory = mRenderer->getDxgiFactory();
             DXGI_SWAP_CHAIN_DESC1 swapChainDesc = {0};
             swapChainDesc.Width = backbufferWidth;
@@ -614,6 +619,7 @@ EGLint SwapChain11::reset(int backbufferWidth, int backbufferHeight, EGLint swap
             swapChainDesc.Scaling = isPanel ? DXGI_SCALING_STRETCH : DXGI_SCALING_NONE;
             if (isPanel)
             {
+#ifndef ANGLE_PLATFORM_XBOX
                 ComPtr<ISwapChainBackgroundPanelNative> panelNative;
                 ComPtr<IUnknown> iWindow = iWinRTWindow->GetWindowInterface();
                 result = iWindow.As(&panelNative);
@@ -625,6 +631,7 @@ EGLint SwapChain11::reset(int backbufferWidth, int backbufferHeight, EGLint swap
                         panelNative->SetSwapChain(mSwapChain);
                     }
                 }
+#endif
             }
             else
             {
@@ -823,10 +830,10 @@ EGLint SwapChain11::swapRect(EGLint x, EGLint y, EGLint width, EGLint height)
 
     // Apply shaders
     deviceContext->IASetInputLayout(mPassThroughIL);
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
     deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 #else
-   deviceContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+    deviceContext->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 #endif // #if defined(ANGLE_PLATFORM_WINRT)
     deviceContext->VSSetShader(mPassThroughVS, NULL, 0);
     deviceContext->PSSetShader(mPassThroughPS, NULL, 0);

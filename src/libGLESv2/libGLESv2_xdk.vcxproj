@@ -94,7 +94,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Durango'">
     <Link>
-      <AdditionalDependencies>d3d11_x.lib;combase.lib;kernelx.lib;toolhelpx.lib;uuid.lib;</AdditionalDependencies>
+      <AdditionalDependencies>d3dcompiler.lib;d3d11_x.lib;combase.lib;kernelx.lib;toolhelpx.lib;uuid.lib;</AdditionalDependencies>
       <EntryPointSymbol>
       </EntryPointSymbol>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -109,7 +109,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalUsingDirectories>$(Console_SdkPackagesRoot);$(Console_SdkWindowsMetadataPath);%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>LIBGLESV2_EXPORTS;NDEBUG;__WRL_NO_DEFAULT_LIB__;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>LIBGLESV2_EXPORTS;NOMINMAX;_CRT_SECURE_NO_WARNINGS;NDEBUG;__WRL_NO_DEFAULT_LIB__;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <WarningLevel>Level4</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -120,7 +120,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Durango'">
     <Link>
-      <AdditionalDependencies>pixEvt.lib;d3d11_x.lib;combase.lib;kernelx.lib;toolhelpx.lib;uuid.lib;</AdditionalDependencies>
+      <AdditionalDependencies>d3dcompiler.lib;pixEvt.lib;d3d11_x.lib;combase.lib;kernelx.lib;toolhelpx.lib;uuid.lib;</AdditionalDependencies>
       <EntryPointSymbol>
       </EntryPointSymbol>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -135,7 +135,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalUsingDirectories>$(Console_SdkPackagesRoot);$(Console_SdkWindowsMetadataPath);%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>LIBGLESV2_EXPORTS;NDEBUG;__WRL_NO_DEFAULT_LIB__;Profile;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>LIBGLESV2_EXPORTS;NOMINMAX;_CRT_SECURE_NO_WARNINGS;NDEBUG;__WRL_NO_DEFAULT_LIB__;Profile;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <WarningLevel>Level4</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -146,7 +146,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Durango'">
     <Link>
-      <AdditionalDependencies>d3d11_x.lib;combase.lib;kernelx.lib;toolhelpx.lib;uuid.lib;</AdditionalDependencies>
+      <AdditionalDependencies>d3dcompiler.lib;d3d11_x.lib;combase.lib;kernelx.lib;toolhelpx.lib;uuid.lib;</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -159,7 +159,7 @@
       <AdditionalUsingDirectories>$(Console_SdkPackagesRoot);$(Console_SdkWindowsMetadataPath);%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>LIBGLESV2_EXPORTS;_DEBUG;__WRL_NO_DEFAULT_LIB__;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>LIBGLESV2_EXPORTS;NOMINMAX;_CRT_SECURE_NO_WARNINGS;_DEBUG;__WRL_NO_DEFAULT_LIB__;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsWinRT>false</CompileAsWinRT>
       <DisableSpecificWarnings>4100;4127;4189;4239;4244;4245;4512;4702;4718;4267;</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\..\include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>

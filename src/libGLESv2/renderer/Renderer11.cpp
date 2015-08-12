@@ -28,13 +28,13 @@
 #include "libGLESv2/renderer/Query11.h"
 #include "libGLESv2/renderer/Fence11.h"
 
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
 #include "common/winrtutils.h"
 #include "common/winrtangle.h"
 #include "common/winrtangleutils.h"
 #if !WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 #include "third_party/winrt/ThreadEmulation/ThreadEmulation.h"
-using namespace ThreadEmulation;
+//using namespace ThreadEmulation;
 #endif
 using namespace Microsoft::WRL;
 
@@ -179,10 +179,10 @@ static const D3D_FEATURE_LEVEL* getFeatureLevels(const D3D_FEATURE_LEVEL maxLeve
 EGLint Renderer11::createDevice()
 {
 #if !defined(ANGLE_PLATFORM_WINRT)
-    mDxgiModule = LoadLibrary(TEXT("dxgi.dll"));
-    mD3d11Module = LoadLibrary(TEXT("d3d11.dll"));
+    mDxgiModule = nullptr;//LoadLibrary(TEXT("dxgi.dll"));
+    mD3d11Module = LoadLibrary(TEXT("d3d11_x.dll"));
 
-    if (mD3d11Module == NULL || mDxgiModule == NULL)
+    if (mD3d11Module == NULL )
     {
         ERR("Could not load D3D11 or DXGI library - aborting!\n");
         return EGL_NOT_INITIALIZED;
@@ -202,7 +202,7 @@ EGLint Renderer11::createDevice()
     HRESULT result = S_OK;
 	D3D_FEATURE_LEVEL maxFeatureLevel = sfeatureLevels[0];
 
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
 	ComPtr<IWinrtEglWindow> iWinRTWindow;
 	result = winrtangleutils::getIWinRTWindow(mDc, &iWinRTWindow);
     if (FAILED(result))
@@ -277,7 +277,7 @@ EGLint Renderer11::createDevice()
         }
     }
 
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
     iWinRTWindow.Get()->SetAngleD3DDevice(mDevice);
 #endif
 
@@ -320,7 +320,7 @@ EGLint Renderer11::initialize()
     memset(mDescription, 0, sizeof(mDescription));
     wcstombs(mDescription, mAdapterDescription.Description, sizeof(mDescription) - 1);
 
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
     result = mDxgiAdapter->GetParent(__uuidof(IDXGIFactory2), (void**)&mDxgiFactory);
 #else
     result = mDxgiAdapter->GetParent(__uuidof(IDXGIFactory), (void**)&mDxgiFactory);

@@ -56,7 +56,7 @@ class SwapChain11 : public SwapChain
     unsigned int mSwapInterval;
     bool mPassThroughResourcesInit;
 
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
     IDXGISwapChain1 *mSwapChain;
 #else
     IDXGISwapChain *mSwapChain;

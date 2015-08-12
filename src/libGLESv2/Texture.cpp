@@ -14,7 +14,7 @@
 #include "libGLESv2/main.h"
 #include "libGLESv2/mathutil.h"
 #include "libGLESv2/utilities.h"
-#if !defined(ANGLE_PLATFORM_WINRT)
+#if !defined(ANGLE_PLATFORM_WINRT) && !defined(ANGLE_PLATFORM_XBOX)
 #include "libGLESv2/renderer/Blit.h"
 #endif // #if !defined(ANGLE_PLATFORM_WINRT)
 #include "libGLESv2/Renderbuffer.h"
@@ -378,7 +378,7 @@ GLenum Texture2D::getActualFormat(GLint level) const
         return mImageArray[level]->getActualFormat();
     else
     {
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
         return DXGI_FORMAT_UNKNOWN;
 #else
         return D3DFMT_UNKNOWN;
@@ -982,7 +982,7 @@ GLenum TextureCubeMap::getActualFormat(GLenum target, GLint level) const
         return mImageArray[faceIndex(target)][level]->getActualFormat();
     else
     {
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
         return DXGI_FORMAT_UNKNOWN;
 #else
         return D3DFMT_UNKNOWN;
