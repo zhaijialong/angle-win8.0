@@ -5,6 +5,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "preprocessor_xdk", "compile
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "translator_hlsl_xdk", "compiler\translator_hlsl_xdk.vcxproj", "{7F577602-C471-4D60-8D31-763F2A0E9943}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "translator_common_xdk", "compiler\translator_common_xdk.vcxproj", "{714FA797-3C40-4E32-806C-7007A43D42C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Durango = Debug|Durango
@@ -24,6 +26,12 @@ Global
 		{7F577602-C471-4D60-8D31-763F2A0E9943}.Profile|Durango.Build.0 = Profile|Durango
 		{7F577602-C471-4D60-8D31-763F2A0E9943}.Release|Durango.ActiveCfg = Release|Durango
 		{7F577602-C471-4D60-8D31-763F2A0E9943}.Release|Durango.Build.0 = Release|Durango
+		{714FA797-3C40-4E32-806C-7007A43D42C8}.Debug|Durango.ActiveCfg = Debug|Durango
+		{714FA797-3C40-4E32-806C-7007A43D42C8}.Debug|Durango.Build.0 = Debug|Durango
+		{714FA797-3C40-4E32-806C-7007A43D42C8}.Profile|Durango.ActiveCfg = Profile|Durango
+		{714FA797-3C40-4E32-806C-7007A43D42C8}.Profile|Durango.Build.0 = Profile|Durango
+		{714FA797-3C40-4E32-806C-7007A43D42C8}.Release|Durango.ActiveCfg = Release|Durango
+		{714FA797-3C40-4E32-806C-7007A43D42C8}.Release|Durango.Build.0 = Release|Durango
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
