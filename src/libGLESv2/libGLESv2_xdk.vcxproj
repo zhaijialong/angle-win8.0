@@ -192,14 +192,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\third_party\winrt\ThreadEmulation\ThreadEmulation.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="Context.cpp" />
     <ClCompile Include="..\common\debug.cpp">
@@ -269,7 +261,6 @@
     <ClInclude Include="..\common\winrtangleutils.h" />
     <ClInclude Include="..\common\winrtutils.h" />
     <ClInclude Include="..\third_party\murmurhash\MurmurHash3.h" />
-    <ClInclude Include="..\third_party\winrt\ThreadEmulation\ThreadEmulation.h" />
     <ClInclude Include="angletypes.h" />
     <ClInclude Include="BinaryStream.h" />
     <ClInclude Include="Buffer.h" />
