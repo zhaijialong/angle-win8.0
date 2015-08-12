@@ -40,6 +40,11 @@
     <ClCompile Include="Surface.cpp" />
     <ClCompile Include="TLSWinrt.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\libGLESv2\libGLESv2_xdk.vcxproj">
+      <Project>{140b4670-6dee-42af-a414-913ec9bd3db4}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <RootNamespace>libEGL_xdk</RootNamespace>
     <ProjectGuid>{16f6d0bf-dcca-4cb3-89b0-1c38b7db9e34}</ProjectGuid>

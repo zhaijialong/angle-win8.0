@@ -189,4 +189,3 @@ EXPORTS
 
 	; WinRT Window functions
     CreateWinrtEglWindow			@181
-	CreateWinPhone8XamlWindow		@182
