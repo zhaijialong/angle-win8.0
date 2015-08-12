@@ -13,7 +13,7 @@
 
 #include <unknwn.h>
 #include <wrl.h>
-#include <D3D11_1.h>
+#include <d3d11_x.h>
 
 namespace winrtangleutils
 {

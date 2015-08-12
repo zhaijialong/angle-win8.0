@@ -308,7 +308,7 @@ EGLSurface __stdcall eglCreateWindowSurface(EGLDisplay dpy, EGLConfig config, EG
             return EGL_NO_SURFACE;
         }
         
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
         return display->createWindowSurface(win, config, attrib_list);
 #else
         HWND window = (HWND)win;

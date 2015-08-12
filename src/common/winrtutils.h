@@ -11,14 +11,14 @@
 
 #include <wrl\client.h>
 #include <windows.ui.core.h>
-#include <windows.graphics.display.h>
+//#include <windows.graphics.display.h>
 
 #include <string>
 
 namespace winrt 
 {
 
-ABI::Windows::Graphics::Display::DisplayOrientations GetDisplayOrientation();
+//ABI::Windows::Graphics::Display::DisplayOrientations GetDisplayOrientation();
 
 
 // Method to convert a length in device-independent pixels (DIPs) to a length in physical pixels.

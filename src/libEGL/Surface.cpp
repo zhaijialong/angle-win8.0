@@ -21,7 +21,7 @@
 #include "libEGL/main.h"
 #include "libEGL/Display.h"
 
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
 #include "common/winrtutils.h"
 #include "common/winrtangleutils.h"
 using namespace Microsoft::WRL;
@@ -103,7 +103,7 @@ bool Surface::resetSwapChain()
 
     if (mWindow)
     {
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
 
 		winrtangleutils::getWindowSize(mWindow, width, height);
 
@@ -243,7 +243,7 @@ EGLNativeWindowType Surface::getWindowHandle()
 #define kSurfaceProperty _TEXT("Egl::SurfaceOwner")
 #define kParentWndProc _TEXT("Egl::SurfaceParentWndProc")
 
-#if !defined(ANGLE_PLATFORM_WINRT)
+#if !defined(ANGLE_PLATFORM_WINRT) && !defined(ANGLE_PLATFORM_XBOX)
 static LRESULT CALLBACK SurfaceWindowProc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
 {
   if (message == WM_SIZE)
@@ -266,7 +266,7 @@ void Surface::subclassWindow()
         return;
     }
 
-#if !defined(ANGLE_PLATFORM_WINRT)
+#if !defined(ANGLE_PLATFORM_WINRT) && !defined(ANGLE_PLATFORM_XBOX)
     DWORD processId;
     DWORD threadId = GetWindowThreadProcessId(mWindow, &processId);
     if (processId != GetCurrentProcessId() || threadId != GetCurrentThreadId())
@@ -295,7 +295,7 @@ void Surface::unsubclassWindow()
         return;
     }
 
-#if !defined(ANGLE_PLATFORM_WINRT)
+#if !defined(ANGLE_PLATFORM_WINRT) && !defined(ANGLE_PLATFORM_XBOX)
 
     // un-subclass
     LONG_PTR parentWndFunc = reinterpret_cast<LONG_PTR>(GetProp(mWindow, kParentWndProc));
@@ -319,7 +319,7 @@ void Surface::unsubclassWindow()
 
 bool Surface::checkForOutOfDateSwapChain()
 {
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
     int clientWidth = 0;
     int clientHeight = 0;
 	winrtangleutils::getWindowSize(mWindow, clientWidth, clientHeight);

@@ -18,6 +18,7 @@
     <ClInclude Include="..\common\angleutils.h" />
     <ClInclude Include="..\common\debug.h" />
     <ClInclude Include="..\common\version.h" />
+    <ClInclude Include="..\common\winrtangle.h" />
     <ClInclude Include="..\common\winrtangleutils.h" />
     <ClInclude Include="..\common\winrtplatform.h" />
     <ClInclude Include="..\common\winrtutils.h" />

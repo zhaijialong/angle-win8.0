@@ -18,7 +18,7 @@
 
 #include "common/winrtplatform.h"
 
-#if !defined(ANGLE_PLATFORM_WP8)
+#if !defined(ANGLE_PLATFORM_WP8) && !defined(ANGLE_PLATFORM_XBOX)
 #include <windows.ui.xaml.media.dxinterop.h>
 #endif // !defined(ANGLE_PLATFORM_WP8)
 
@@ -27,39 +27,39 @@ using namespace ABI::Windows::Storage;
 using namespace Microsoft::WRL;
 using namespace Microsoft::WRL::Wrappers;
 using namespace ABI::Windows::ApplicationModel;
-using namespace ABI::Windows::Graphics::Display;
+//using namespace ABI::Windows::Graphics::Display;
 using namespace ABI::Windows::UI::Core;
 
 namespace winrt 
 {
 
-DisplayOrientations GetDisplayOrientation()
-{
-    ComPtr<IDisplayPropertiesStatics> dp;
-    DisplayOrientations orientation = DisplayOrientations_None;
-
-    if (SUCCEEDED(GetActivationFactory(HStringReference(RuntimeClass_Windows_Graphics_Display_DisplayProperties).Get(), dp.GetAddressOf()))) 
-    {
-        if (SUCCEEDED(dp->get_CurrentOrientation(&orientation))) 
-        {
-            return orientation;
-        }
-    }
-    return DisplayOrientations_None;
-}
+//DisplayOrientations GetDisplayOrientation()
+//{
+//    ComPtr<IDisplayPropertiesStatics> dp;
+//    DisplayOrientations orientation = DisplayOrientations_None;
+//
+//    if (SUCCEEDED(GetActivationFactory(HStringReference(RuntimeClass_Windows_Graphics_Display_DisplayProperties).Get(), dp.GetAddressOf()))) 
+//    {
+//        if (SUCCEEDED(dp->get_CurrentOrientation(&orientation))) 
+//        {
+//            return orientation;
+//        }
+//    }
+//    return DisplayOrientations_None;
+//}
 
 static float GetLogicalDpi()
 {
-    ComPtr<IDisplayPropertiesStatics> dp;
-    FLOAT dpi = 1.0;
+    //ComPtr<IDisplayPropertiesStatics> dp;
+    //FLOAT dpi = 1.0;
 
-    if (SUCCEEDED(GetActivationFactory(HStringReference(RuntimeClass_Windows_Graphics_Display_DisplayProperties).Get(), dp.GetAddressOf()))) 
-    {
-        if (SUCCEEDED(dp->get_LogicalDpi(&dpi)))
-        {
-            return dpi;
-        }
-    }
+    //if (SUCCEEDED(GetActivationFactory(HStringReference(RuntimeClass_Windows_Graphics_Display_DisplayProperties).Get(), dp.GetAddressOf()))) 
+    //{
+    //    if (SUCCEEDED(dp->get_LogicalDpi(&dpi)))
+    //    {
+    //        return dpi;
+    //    }
+    //}
     return 1.0;
 }
 
@@ -73,12 +73,13 @@ float convertDipsToPixels(float dips)
 
 bool isSwapChainBackgroundPanel(ComPtr<IUnknown> window)
 {
-#if defined(ANGLE_PLATFORM_WP8)
-    return FALSE;
-#else
-    ComPtr<ISwapChainBackgroundPanelNative> panelNative;
-    return S_OK == (window.As(&panelNative));
-#endif // #if defined(ANGLE_PLATFORM_WP8)
+//#if defined(ANGLE_PLATFORM_WP8)
+//    return FALSE;
+//#else
+//    ComPtr<ISwapChainBackgroundPanelNative> panelNative;
+//    return S_OK == (window.As(&panelNative));
+//#endif // #if defined(ANGLE_PLATFORM_WP8)
+    return true;
 }
 
 

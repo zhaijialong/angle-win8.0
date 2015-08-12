@@ -18,7 +18,7 @@
 #include "common/winrtplatform.h"
 
 
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
 #include <wrl\client.h>
 typedef Microsoft::WRL::ComPtr<IUnknown> AngleNativeWindowHDC;
 #else

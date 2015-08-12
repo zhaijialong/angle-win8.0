@@ -11,7 +11,7 @@
 
 #include <unknwn.h>
 #include <wrl.h>
-#include <d3d11_1.h>
+#include <d3d11_x.h>
 
 typedef enum {
     ANGLE_D3D_FEATURE_LEVEL_ANY = 0,
