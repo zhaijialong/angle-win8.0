@@ -12,9 +12,10 @@
 #include "common/winrtplatform.h"
 
 
-#if defined(ANGLE_PLATFORM_WINRT)
+#if defined(ANGLE_PLATFORM_WINRT) || defined(ANGLE_PLATFORM_XBOX)
 #include "TLSWinrt.h"
-extern __declspec( thread ) DWORD currentTLS;
+//extern __declspec( thread ) DWORD currentTLS;
+static DWORD currentTLS = TLS_OUT_OF_INDEXES;
 #else
 static DWORD currentTLS = TLS_OUT_OF_INDEXES;
 #endif // #if defined(ANGLE_PLATFORM_WINRT)

@@ -12,14 +12,9 @@
 #if !WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
 __declspec( thread ) egl::Current glContext;
-__declspec( thread ) DWORD currentTLS = TLS_OUT_OF_INDEXES;
 
-void* TlsGetValue(DWORD index) { return (void*) &glContext; };
 void * LocalAlloc(UINT uFlags, size_t size) { return (void*) &glContext; };
 void LocalFree(HLOCAL index) {};
-DWORD TlsAlloc() { return 1; };
-void TlsSetValue(DWORD currentTLS, egl::Current* current) {};
-void TlsFree(DWORD index) {currentTLS = TLS_OUT_OF_INDEXES;};
 
 #endif
 #endif

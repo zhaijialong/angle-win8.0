@@ -35,6 +35,11 @@
 #endif // #if defined(WINAPI_PARTITION_PHONE) && WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_PHONE)
 #endif // #if defined(WINAPI_FAMILY)
 
-
+#if defined(WINAPI_FAMILY)
+#if defined(_XBOX_ONE) && defined(_DURANGO)
+#define ANGLE_PLATFORM_XBOX
+#define ANGLE_OS_XBOX
+#endif
+#endif
 #endif   // WINRT_PLATFORM_H_
 
