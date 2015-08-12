@@ -9,6 +9,7 @@
 #ifndef LIBGLESV2_MAIN_H_
 #define LIBGLESV2_MAIN_H_
 
+#include "precompiled.h"
 #include "common/debug.h"
 #include "common/system.h"
 
